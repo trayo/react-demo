@@ -10,9 +10,9 @@ var LiveSearch = React.createClass({
 
   render: function() {
     var searchString = this.state.searchString.trim().toLowerCase(),
-      library = this.props.library,
-      filterTerm = this.props.filterTerm;
-      display = this.props.display;
+        library = this.props.library,
+        filterTerm = this.props.filterTerm,
+        display = this.props.display;
 
     if (searchString.length > 0) {
       library = library.filter(function(l) {

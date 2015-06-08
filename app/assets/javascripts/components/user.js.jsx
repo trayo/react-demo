@@ -1,39 +1,31 @@
 var User = React.createClass({
   render: function() {
-    return <div>{this.props.user.name}</div>;
+    return (
+      <div>
+        <h2>
+          {this.props.user.name}<br/>
+          by: {this.props.user.id}
+        </h2>
+      </div>
+    );
   }
 });
 
 var UserList = React.createClass({
   render: function() {
     var createUser = function(user){
-      return (
-        <div key={user.name + " " + user.id}>
-          <User user={user} />
-        </div>
-      );
+      return <User user={user} />;
     };
 
     var filterTerm = function(user){
       return user.name;
     };
 
-    var display = function(user) {
-      return (
-        <div>
-          <h2>
-            {user.name}<br/>
-            by: {user.id}
-          </h2>
-        </div>
-      );
-    };
-
     return (
       <LiveSearch
         library={this.props.users}
         filterTerm={filterTerm}
-        display={display}
+        display={createUser}
       />
     );
   },
