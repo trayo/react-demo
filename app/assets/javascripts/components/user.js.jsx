@@ -1,12 +1,7 @@
 var User = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string
-  },
-
   render: function() {
     return <div>{this.props.user.name}</div>;
   }
-
 });
 
 var UserList = React.createClass({
@@ -19,13 +14,28 @@ var UserList = React.createClass({
       );
     };
 
+    var filterTerm = function(user){
+      return user.name;
+    };
+
+    var display = function(user) {
+      return (
+        <div>
+          <h2>
+            {user.name}<br/>
+            by: {user.id}
+          </h2>
+        </div>
+      );
+    };
+
     return (
-      <LiveSearch>
-        <br/>
-        { this.props.users.map(createUser) }
-      </LiveSearch>
+      <LiveSearch
+        library={this.props.users}
+        filterTerm={filterTerm}
+        display={display}
+      />
     );
   },
 });
 
-// <LiveSearch users={this.props.users} />
