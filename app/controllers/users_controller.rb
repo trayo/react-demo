@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   def index
-    respond_with @users = User.all
+    respond_with @users = User.all.order(updated_at: :desc)
   end
 
   def update

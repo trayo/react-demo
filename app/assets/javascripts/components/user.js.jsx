@@ -12,10 +12,10 @@ var User = React.createClass({
   },
 
   flipEditing: function() {
-    this.setState({ isEditing: !this.state.isEditing });
+    this.setState({isEditing: !this.state.isEditing});
   },
 
-  handleSubmit: function(name) {
+  handleSubmit: function() {
     var newName = this.refs.name.getDOMNode().value.trim();
     var userID = this.state.user.id;
 
@@ -33,18 +33,16 @@ var User = React.createClass({
     return (
       <div>
         <h2 hidden={!this.state.isEditing}> {this.state.name} </h2>
-        <form onSubmit={this.handleSubmit} hidden={this.state.isEditing}>
+        <div hidden={this.state.isEditing}>
           <input type="text" onChange={this.handleChange} value={this.state.name} ref="name" />
-          <input className="button" type="submit" value="Save" />
-        </form>
+          <button onClick={this.handleSubmit}>Save</button>
+        </div>
         by: {this.state.user.id} <br/>
         <button onClick={this.flipEditing}>Edit User</button> <br/>
       </div>
     );
   }
 });
-
-// <UserEdit onClick={this.changeName} />
 
 var UserList = React.createClass({
   getInitialState: function() {
